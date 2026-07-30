@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#08111f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Order Match" />
+  <title>Staples Order Match</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="brand-panel">
+      <div class="logo-mark" aria-hidden="true"><span class="box-top"></span><span class="box-front">S</span></div>
+      <div class="brand-copy">
+        <p class="eyebrow">OFFLINE DESTINATION TOOL</p>
+        <h1>Staples Order Match</h1>
+        <p class="subtitle">Warehouse Utilities by Castle Labs</p>
+      </div>
+    </header>
+
+    <section class="lookup-panel">
+      <label for="zipInput">Destination ZIP</label>
+      <div class="zip-entry-wrap">
+        <input id="zipInput" class="zip-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" autocomplete="off" enterkeyhint="done" aria-describedby="entryHint" placeholder="00000" />
+        <button id="clearButton" class="clear-button" type="button" aria-label="Clear ZIP code">CLEAR</button>
+      </div>
+      <div class="digit-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <p id="entryHint" class="entry-hint">Live search begins with the first digit.</p>
+    </section>
+
+    <section id="resultCard" class="result-card state-idle radar-speed-0" aria-live="polite">
+      <div class="radar-stage" aria-hidden="true">
+        <div class="radar-grid"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-ping ping-one"></div>
+        <div class="radar-ping ping-two"></div>
+        <div class="radar-lock"></div>
+      </div>
+
+      <div class="status-row"><span class="status-dot"></span><span id="statusText" class="status-text">READY</span></div>
+
+      <div id="idleState" class="state-content idle-state">
+        <p class="idle-title">ENTER DESTINATION ZIP</p>
+        <p>Results narrow instantly as each number is entered.</p>
+      </div>
+
+      <div id="liveState" class="state-content live-state hidden">
+        <div class="live-heading">
+          <span>LIVE SEARCH</span>
+          <span id="matchCount" class="match-count"></span>
+        </div>
+        <div id="liveMatches" class="live-matches"></div>
+      </div>
+
+      <div id="matchState" class="state-content match-state hidden">
+        <p class="verified-label">ZIP CONFIRMED <span>✓</span></p>
+        <p id="resultZip" class="result-zip"></p>
+        <div class="city-line"><h2 id="resultCity" class="result-city"></h2><span id="resultState" class="state-badge"></span></div>
+        <p id="resultCounty" class="result-county"></p>
+        <div class="confidence-chip"><span class="check">✓</span><span>Preferred postal city</span></div>
+        <div id="alternateBlock" class="alternate-block hidden">
+          <p class="alternate-label">Also known as</p>
+          <div id="alternateNames" class="alternate-list"></div>
+        </div>
+      </div>
+
+      <div id="notFoundState" class="state-content not-found-state hidden">
+        <div class="warning-symbol">!</div>
+        <h2>NO TARGET FOUND</h2>
+        <p>Check the five digits or press Clear.</p>
+      </div>
+    </section>
+
+    <footer><span>CASTLE LABS · V1.2 TEST BUILD</span><span>OFFLINE READY</span></footer>
+  </main>
+  <script src="zip-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
