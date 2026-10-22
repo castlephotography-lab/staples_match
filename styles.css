@@ -201,7 +201,7 @@ footer { display: flex; justify-content: space-between; padding: 0 3px; color: r
   .live-row { min-height: 37px; }
 }
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-width: 900px) and (pointer: coarse) {
   body::after {
     content: "Rotate to portrait";
     position: fixed; inset: 0; z-index: 99; display: grid; place-items: center;
